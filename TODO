@@ -1,6 +1,5 @@
 # TODO
 
-* HTML TOC
 * Sort chapters by title, date, and arbitrary fn
 * Optionally download images, background-images, and stylesheets
 * Eliminate all css colours
@@ -13,3 +12,4 @@
 * Chapter metadata
 * Better text/plain rendering
 * Cover support
+* Tests
