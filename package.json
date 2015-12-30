@@ -1,0 +1,37 @@
+{
+  "name": "mbox2epub",
+  "version": "1.0.0",
+  "description": "converts mbox mailboxes to epub, in a moderately-dumb fashion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Keith Beckman <kbeckman@becknet.com>",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "epub-gen": "^0.0.12",
+    "epub-generator": "git+https://github.com/sehrgut/epub-generator.git",
+    "graceful-fs": "^4.1.2",
+    "handlebars": "^4.0.5",
+    "mailparser": "^0.5.3",
+    "node-markdown": "^0.1.1",
+    "node-mbox": "^0.2.1",
+    "printf": "^0.2.3",
+    "sanitize-filename": "^1.5.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sehrgut/mbox2epub.git"
+  },
+  "keywords": [
+    "epub",
+    "mbox",
+    "email"
+  ],
+  "bugs": {
+    "url": "https://github.com/sehrgut/mbox2epub/issues"
+  },
+  "homepage": "https://github.com/sehrgut/mbox2epub#readme"
+}
