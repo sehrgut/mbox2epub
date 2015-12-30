@@ -8,8 +8,13 @@ var outpath = './data/Aro Course.epub';
 var outdir = './data/Aro Course';
 
 var opts = {
-	use_text: false,
-	strip_background_images: true
+	title: 'Aro Meditation Course',
+	author: 'Aro Gar'
 };
 
-new Mbox2Epub(mbpath, outpath, 'Aro Meditation Course', opts);
+var epub = new Mbox2Epub(opts);
+epub.add(mbpath, function(err) {
+	epub.write(outpath, function (err) {
+		console.log('Done writing.');
+	});
+});

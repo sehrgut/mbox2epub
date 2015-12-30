@@ -1,9 +1,15 @@
 # TODO
 
+* HTML TOC
 * Sort chapters by title, date, and arbitrary fn
-* Optionally download images and background images
+* Optionally download images, background-images, and stylesheets
 * Eliminate all css colours
 * Hoist all inline styles to classes
 * Embed webfonts
 * Embed attached images
 * Robust MIME handling, rather than naive text-or-html supported by mailparse
+* Logging
+* CLI util
+* Chapter metadata
+* Better text/plain rendering
+* Cover support
