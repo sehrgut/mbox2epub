@@ -9,7 +9,10 @@ var outdir = './data/Aro Course';
 
 var opts = {
 	title: 'Aro Meditation Course',
-	author: 'Aro Gar'
+	author: 'Aro Gar',
+	subjects: ['Buddhism', 'Religion & Spirituality', 'Philosophy', 'Meditation'],
+	use_text: false,
+	flatten_tables: true
 };
 
 var epub = new Mbox2Epub(opts);
