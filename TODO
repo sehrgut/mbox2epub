@@ -4,6 +4,7 @@
 * Optionally download images, background-images, and stylesheets
 * Eliminate all css colours
 * Hoist all inline styles to classes
+* Clean up CSS in .css files
 * Embed webfonts
 * Embed attached images
 * Robust MIME handling, rather than naive text-or-html supported by mailparse
@@ -14,3 +15,5 @@
 * Cover support
 * Tests
 * Strip external links
+* Maildir input
+* Formalize examples

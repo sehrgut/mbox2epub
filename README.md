@@ -6,6 +6,17 @@ I wrote this to have an easy way to convert IMAP directories
 into which digest subscriptions were sorted for use on an 
 e-reader.  
 
+### From the terminal . . .
+```bash
+mbox2epub \
+	--title 'Book Title' \
+	--author 'Author Name' \
+	-s Subjects -s Become -s Categories -s And -s Collections \
+	--flatten-tables \
+	./path/to/your.mbox > ./path/to/your.epub
+```
+
+### . . . or in code
 ```javascript
 var Mbox2Epub = require('mbox2epub');
 
@@ -16,7 +27,6 @@ var opts = {
 	title: 'Book Title',
 	author: 'Author Name',
 	subjects: ['Subjects', 'Become', 'Categories', 'And', 'Collections'],
-	use_text: false, // force plain-text email even if html is available
 	flatten_tables: true // tables break on many readers
 };
 
@@ -29,12 +39,37 @@ epub.add(mbpath, function(err) {
 ```
 
 ## Installation
-`npm install mbox2epub`
+`npm install --global mbox2epub`
 
 ## Features
 * One message becomes one chapter
 * Creates markdown-ified HTML from plain-text emails
 * Cleans up HTML emails to become valid EPUB chapters
+
+## CLI
+
+```
+% mbox2epub --help
+Usage: node mbox2epub
+
+  -m, --mbox=PATH+               mbox to parse (defaults to stdin)
+  -o, --out=PATH                 output path (defaults to stdout)
+  -t, --title=STRING             publication title
+  -a, --author=STRING            publication author
+  -s, --subject=STRING+          subject/category tag
+      --uuid=ID                  publication unique ID (e.g. UUID, ASIN, ISBN, ISSN) (defaults: random UUID)
+      --language=LANG            publication language
+      --description=STRING       publication description/summary
+      --rights=STRING            copyleft/right statement
+      --date=DATE                publication date (defaults to last date of message in mbox)
+      --cover=PATH               path or URL to cover image (not implemented)
+      --use-text                 force use of text/plain message part even if text/html is present
+      --strip-background-images  remove background and background-image inline styles
+      --flatten-tables           convert tables to divs for readers that can't handle them
+  -h, --help                     display this help
+  -v, --version                  show version
+  -V, --verbose                  verbose logging to stderr
+```
 
 ## API
 
@@ -44,7 +79,7 @@ epub.add(mbpath, function(err) {
   * `out`: path - location of destination EPUB, will be clobbered
   * `encoding`: string - encoding of mbox data (default: `"utf-8"`)
   * `use_text`: boolean - force use of text/plain MIME part even if text/html part is available (default: `false`)
-  * `strip_background_images`: boolean - remove background and background-image inline styles (default: `true`)
+  * `strip_background_images`: boolean - remove background and background-image inline styles (default: `false`)
   * `flatten_tables`: boolean - replace tables with divs containing the contents of their cells in child divs, preserving class, style, and id (default: `false`)
   * `uuid`, `title`, `language`, `author`, `subjects`,`description`, `rights`, `date`, `cover`: mixed - metadata passed directly to `epub-generator`.
 * `cb`: _function(err)_ - called when EPUB has been written (using `options.in` and `options.out`)
@@ -103,7 +138,6 @@ epub.add('my.mbox', function (err) {
 
 ### Create EPUB on STDOUT using multiple mboxes
 ```javascript
-/// Note: at present, some logging is done to STDOUT, which disrupts this use-case
 var epub = new Mbox2Epub({
 	title: 'My Epub',
     author: 'Author Name'
