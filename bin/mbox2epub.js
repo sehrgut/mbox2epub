@@ -4,7 +4,8 @@
 var Mbox2Epub = require('../'),
 	getopt = require('node-getopt'),
 	printf = require('printf'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	pkginfo = require('../package');
 
 
 //todo: custom helptext, explaining use of bare mbox args
@@ -24,7 +25,7 @@ var opts = getopt.create([
 	[''  , 'strip-background-images'	, 'remove background and background-image inline styles'],
 	[''  , 'flatten-tables'		, 'convert tables to divs for readers that can\'t handle them'],
 	['h' , 'help'				, 'display this help'],
-	['v' , 'version'			, 'show version'], // todo: implement version string
+	['v' , 'version'			, 'show version'],
 	['V' , 'verbose'			, 'verbose logging to stderr']
 ]).bindHelp().parseSystem();
 
@@ -46,6 +47,12 @@ function die(msg) {
 	process.exit(-1);
 }
 
+function print_version() {
+	carp(printf('%s %s\nCopyright (C) %s\n\nProvided under the terms of the %s license',
+		pkginfo.name, pkginfo.version, pkginfo.author, pkginfo.license));
+	process.exit(0);
+}
+
 var reHyphen = /-/g;
 
 function shellopt_to_jsopt(v) {
@@ -54,6 +61,11 @@ function shellopt_to_jsopt(v) {
 		v[1] = true;
 	return v;
 }
+
+// Process options
+
+if (config.version)
+	print_version();
 
 var params = _(opts.options)
 			.pick(['uuid', 'title', 'language', 'author', 'description', 'rights',
@@ -81,6 +93,9 @@ else
 kvetch(opts);
 kvetch(params)
 kvetch(mboxes);
+
+
+// run conversion
 
 var epub = new Mbox2Epub(params);
 
