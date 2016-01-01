@@ -17,3 +17,4 @@
 * Strip external links
 * Maildir input
 * Formalize examples
+* Fix: node-strftime on Windows returns tz name instead of abbr in MboxStream
