@@ -159,15 +159,8 @@ add_mboxes();
 
 ```
 
-
-
-
-
-
-
-
-
-
+## Caveats
+I do most of my development on OS X and Linux. While I've attempted to ensure this is fully Windows-compatible, there could be sneaky bugs which I'd be grateful to have reported.
 
 
 
